@@ -11,11 +11,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ArticlesComponent } from './articles/articles.component';
+import { MarkdownModule } from 'ngx-markdown';
+import { ArticleComponent } from './article/article.component';
 
-const appRoutes: Routes = [{ path: '', component: ArticlesComponent }];
+const appRoutes: Routes = [
+  { path: '', component: ArticlesComponent },
+  { path: 'article/:id', component: ArticleComponent },
+];
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, ArticlesComponent],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    ArticlesComponent,
+    ArticleComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,6 +34,7 @@ const appRoutes: Routes = [{ path: '', component: ArticlesComponent }];
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
+    MarkdownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
