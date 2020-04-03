@@ -1,23 +1,53 @@
-<mdb-navbar SideClass="navbar navbar-expand-sm navbar-dark green">
-  <mdb-navbar-brand><a class="navbar-brand" href="#">Blog</a></mdb-navbar-brand>
-  <links>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link waves-light" href="#" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li *ngIf="data" class="nav-item dropdown" mdbDropdown>
-        <a mdbDropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          Categories<span class="caret"></span></a>
-        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a *ngFor="let category of data.categories" class="dropdown-item waves-light"
-            routerLink="/category/{{category.id}}" routerLinkActive="active" mdbWavesEffect>{{category.name}}</a>
-        </div>
-      </li>
-    </ul>
-    <form class="form-inline waves-light" mdbWavesEffect>
-      <div class="md-form my-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      </div>
-    </form>
-  </links>
-</mdb-navbar>
+<header>
+  <!--Navbar-->
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark blue lighten-1" [containerInside]="false" mdbStickyHeader>
+    <div class="container">
+      <!-- Navbar brand -->
+      <mdb-navbar-brand><a class="navbar-brand" href="#">Kvsky Blog</a></mdb-navbar-brand>
+
+      <!-- Collapsible content -->
+      <links>
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+          </li>
+
+          <!-- Dropdown -->
+          <li *ngIf="data" class="nav-item dropdown" dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
+              mdbWavesEffect>Categories<span class="caret"></span></a>
+            <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+              <a *ngFor="let category of data.categories" class="dropdown-item waves-light"
+                routerLink="/category/{{category.id}}" routerLinkActive="active" mdbWavesEffect>{{category.name}}</a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect>About me</a>
+          </li>
+        </ul>
+        <!-- Links -->
+
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item envelope-icon-pos">
+            <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
+          </li>
+          <li class="nav-item avatar dropdown " dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle no-caret waves-light"
+              mdbWavesEffect>
+              <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt=""
+                class="img-fluid rounded-circle z-depth-0 avatar-height"></a>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+            </div>
+          </li>
+        </ul>
+      </links>
+      <!-- Collapsible content -->
+    </div>
+  </mdb-navbar>
+  <!--/.Navbar-->
+</header>
