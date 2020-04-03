@@ -22,15 +22,14 @@
       "model": "file",
       "via": "related",
       "plugin": "upload",
-      "required": true
+      "required": false
     },
     "published_at": {
-      "type": "date",
+      "type": "datetime",
       "required": true
     },
-    "categories": {
-      "collection": "category",
-      "via": "article"
+    "category": {
+      "model": "category"
     }
   }
 }

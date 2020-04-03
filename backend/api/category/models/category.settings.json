@@ -16,10 +16,6 @@
     },
     "articles": {
       "collection": "article"
-    },
-    "article": {
-      "via": "categories",
-      "model": "article"
     }
   }
 }
