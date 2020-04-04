@@ -49,7 +49,7 @@ export class NavComponent implements OnInit, OnDestroy {
         .watchQuery({
           query: USER_DATA,
           variables: {
-            id: 1,
+            id: user.data.login.user.id,
           },
         })
         .valueChanges.subscribe((result) => {
@@ -71,8 +71,8 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   profilePhoto() {
-    if (this.userLoading) {
-      return '';
+    if (this.userLoading || this.userData.user.avatar.url === null) {
+      return 'https://www.pphfoundation.ca/wp-content/uploads/2018/05/default-avatar.png';
     } else {
       return 'http://localhost:1337' + this.userData.user.avatar.url;
     }
