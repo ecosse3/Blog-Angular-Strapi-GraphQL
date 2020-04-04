@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Apollo } from 'apollo-angular';
+import { TokenStorageService } from '../auth/token-storage.service.js';
 import CATEGORIES_QUERY from '../apollo/queries/category/categories.js';
 import USER_DATA from '../apollo/queries/user/user-data.js';
-import gql from 'graphql-tag';
-import { TokenStorageService } from '../auth/token-storage.service.js';
 
 @Component({
   selector: 'app-nav',

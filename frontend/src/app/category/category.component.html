@@ -20,19 +20,21 @@
           </div>
           <!--Card content-->
           <mdb-card-body>
+            <mdb-badge *ngIf="article.category; else noCategory" color="red" class="float-right">
+              {{article.category.name}}
+            </mdb-badge>
             <!--Title-->
             <mdb-card-title>
               <h4>{{ article.title }}</h4>
             </mdb-card-title>
 
-            <mdb-badge *ngIf="article.category; else noCategory" primary="true">{{article.category.name}}</mdb-badge>
 
             <!--Text-->
             <mdb-card-text *ngIf="article.category">
             </mdb-card-text>
 
-            <a routerLink="/article/{{ article.id }}" routerLinkActive="active" href="#" mdbBtn color="primary"
-              mdbWavesEffect>Read more...</a>
+            <a routerLink="/article/{{ article.id }}" routerLinkActive="active" href="#" mdbBtn
+              class="light-blue text-white rounded" mdbWavesEffect>Read more...</a>
           </mdb-card-body>
         </mdb-card>
       </div>

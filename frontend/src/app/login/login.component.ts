@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       if (this.authService.redirectUrl) {
         this.router.navigateByUrl(this.authService.redirectUrl);
       } else {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/my-account']);
       }
     }
   }

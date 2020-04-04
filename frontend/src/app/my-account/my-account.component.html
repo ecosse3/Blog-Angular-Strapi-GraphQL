@@ -1,1 +1,10 @@
-<p>my-account works!</p>
+<div class="row">
+  <div class="col-md-12 rounded border">
+    <div class="col-md-8">
+      <div class="avatar"><img [src]="userAvatar" alt=""></div>
+      <div class="userData">
+        Username: {{ userData.data.login.user.username }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,3 +18,8 @@ ul.navbar-nav {
 .intro-header {
   height: unset !important;
 }
+
+.dropdown-item.active {
+  background-color: rgb(209, 0, 0);
+  color: #FFFFFF;
+}
