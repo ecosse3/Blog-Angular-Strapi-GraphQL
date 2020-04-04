@@ -14,3 +14,7 @@ ul.navbar-nav {
 .dropdown-toggle.no-caret::after {
   display: none;
 }
+
+.intro-header {
+  height: unset !important;
+}
