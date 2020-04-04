@@ -34,21 +34,32 @@
          </ul>
          <!-- Links -->
 
-         <ul class="navbar-nav ml-auto nav-flex-icons">
-           <li class="nav-item envelope-icon-pos">
-             <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
-           </li>
-           <li class="nav-item avatar dropdown " dropdown>
-             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle no-caret waves-light"
-               mdbWavesEffect>
-               <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt=""
-                 class="img-fluid rounded-circle z-depth-0 avatar-height"></a>
-             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-               <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-               <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
-             </div>
-           </li>
-         </ul>
+         <ng-container *ngIf="isLoggedIn; else guest">
+           <ul class=" navbar-nav ml-auto nav-flex-icons">
+             <li class="nav-item envelope-icon-pos">
+               <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
+             </li>
+             <li class="nav-item avatar dropdown " dropdown>
+               <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle no-caret waves-light"
+                 mdbWavesEffect>
+                 <img [src]="profilePhoto()" alt="" class="img-fluid rounded-circle z-depth-0 avatar-height"></a>
+               <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+                 <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+                 <a (click)="logout()" class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+               </div>
+             </li>
+           </ul>
+
+         </ng-container>
+         <ng-template #guest>
+           <ul class=" navbar-nav ml-auto nav-flex-icons">
+             <li class="nav-item envelope-icon-pos" routerLinkActive="active">
+               <a routerLink="/login" class="nav-link waves-light">Login</a>
+             </li>
+           </ul>
+
+         </ng-template>
+
        </links>
        <!-- Collapsible content -->
      </div>

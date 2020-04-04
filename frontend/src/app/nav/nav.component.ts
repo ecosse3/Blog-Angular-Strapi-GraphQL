@@ -2,37 +2,79 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 import CATEGORIES_QUERY from '../apollo/queries/category/categories.js';
+import USER_DATA from '../apollo/queries/user/user-data.js';
 import gql from 'graphql-tag';
+import { TokenStorageService } from '../auth/token-storage.service.js';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+  styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit, OnDestroy {
   data: any = {};
   loading = true;
   errors: any;
+  isLoggedIn = false;
+  userData: any;
+  userLoading = true;
+  userErrors: any;
 
   private queryCategories: Subscription;
+  private queryUserData: Subscription;
 
-  constructor(private apollo: Apollo) {}
+  constructor(
+    private apollo: Apollo,
+    private tokenStorageService: TokenStorageService
+  ) {}
 
   ngOnInit(): void {
     this.queryCategories = this.apollo
       .watchQuery({
-        query: CATEGORIES_QUERY
+        query: CATEGORIES_QUERY,
       })
-      .valueChanges.subscribe(result => {
+      .valueChanges.subscribe((result) => {
         this.data = result.data;
         this.loading = result.loading;
         this.errors = result.errors;
       });
+
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      console.log(user);
+
+      this.queryUserData = this.apollo
+        .watchQuery({
+          query: USER_DATA,
+          variables: {
+            id: 1,
+          },
+        })
+        .valueChanges.subscribe((result) => {
+          this.userData = result.data;
+          this.userLoading = result.loading;
+          this.userErrors = result.errors;
+        });
+    }
   }
 
   ngOnDestroy(): void {
-    // Called once, before the instance is destroyed.
-    // Add 'implements OnDestroy' to the class.
     this.queryCategories.unsubscribe();
+    this.queryUserData.unsubscribe();
+  }
+
+  logout() {
+    this.tokenStorageService.signOut();
+    window.location.reload();
+  }
+
+  profilePhoto() {
+    if (this.userLoading) {
+      return '';
+    } else {
+      return 'http://localhost:1337' + this.userData.user.avatar.url;
+    }
   }
 }

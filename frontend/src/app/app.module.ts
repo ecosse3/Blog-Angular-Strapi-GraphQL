@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GraphQLModule } from './graphql.module';
@@ -14,6 +15,12 @@ import { ArticlesComponent } from './articles/articles.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { ArticleComponent } from './article/article.component';
 import { CategoryComponent } from './category/category.component';
+import { LoginComponent } from './login/login.component';
+import { AlertComponent } from './alert/alert.component';
+import { AuthService } from './auth/auth.service';
+import { AlertService } from './alert/alert.service';
+import { AlertModule } from './alert/alert.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +30,8 @@ import { CategoryComponent } from './category/category.component';
     ArticleComponent,
     CategoryComponent,
     HomeComponent,
+    LoginComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,8 +42,10 @@ import { CategoryComponent } from './category/category.component';
     BrowserAnimationsModule,
     RouterModule,
     MarkdownModule.forRoot(),
+    ReactiveFormsModule,
+    AlertModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
