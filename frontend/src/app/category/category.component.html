@@ -1,0 +1,41 @@
+<section class="uk-section">
+  <div class="uk-container uk-container-large">
+    <h1>{{ category }}</h1>
+
+    <div class="row">
+      <div class="col-md-4 my-3" *ngFor="let article of articles">
+        <!-- Card -->
+        <mdb-card>
+          <div class="view overlay waves-light card-img-height" mdbWavesEffect>
+            <!-- Card img -->
+            <mdb-card-img *ngIf="article.image; else defaultImage" src="http://localhost:1337{{ article.image.url }}"
+              alt="{{article.title}}" class="card-img"></mdb-card-img>
+            <ng-template #defaultImage>
+              <mdb-card-img src="http://localhost:1337/uploads/595338d7a4e04985bf35dd7ed93bc81d.jpg"
+                alt="{{article.title}}"></mdb-card-img>
+            </ng-template>
+            <a routerLink="/article/{{ article.id }}">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <!--Card content-->
+          <mdb-card-body>
+            <!--Title-->
+            <mdb-card-title>
+              <h4>{{ article.title }}</h4>
+            </mdb-card-title>
+
+            <mdb-badge *ngIf="article.category; else noCategory" primary="true">{{article.category.name}}</mdb-badge>
+
+            <!--Text-->
+            <mdb-card-text *ngIf="article.category">
+            </mdb-card-text>
+
+            <a routerLink="/article/{{ article.id }}" routerLinkActive="active" href="#" mdbBtn color="primary"
+              mdbWavesEffect>Read more...</a>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+    </div>
+  </div>
+</section>
