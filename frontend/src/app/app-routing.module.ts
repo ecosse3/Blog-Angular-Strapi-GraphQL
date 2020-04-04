@@ -7,6 +7,7 @@ import { CategoryComponent } from './category/category.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './auth/auth.guard';
+import { MyAccountComponent } from './my-account/my-account.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'category/:id',
     component: CategoryComponent,
+  },
+  {
+    path: 'my-account',
+    component: MyAccountComponent,
+    canActivate: [AuthGuard],
   },
   { path: '**', component: PageNotFoundComponent },
 ];

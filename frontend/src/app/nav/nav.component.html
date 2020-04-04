@@ -1,6 +1,7 @@
  <header>
    <!--Navbar-->
-   <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark blue lighten-1" [containerInside]="false" mdbStickyHeader>
+   <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark light-blue lighten-1" [containerInside]="false"
+     mdbStickyHeader>
      <div class="container">
        <!-- Navbar brand -->
        <mdb-navbar-brand><a class="navbar-brand" href="#">Kvsky Blog</a></mdb-navbar-brand>
@@ -29,7 +30,7 @@
            </li>
 
            <li class="nav-item" routerLinkActive="active">
-             <a class="nav-link waves-light" mdbWavesEffect>About me</a>
+             <a class="nav-link waves-light" mdbWavesEffect>Search flight</a>
            </li>
          </ul>
          <!-- Links -->
@@ -44,7 +45,8 @@
                  mdbWavesEffect>
                  <img [src]="profilePhoto()" alt="" class="img-fluid rounded-circle z-depth-0 avatar-height"></a>
                <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-                 <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+                 <a routerLink="/my-account" routerLinkActive="active" class="dropdown-item waves-light" mdbWavesEffect
+                   href="#">My account</a>
                  <a (click)="logout()" class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
                </div>
              </li>

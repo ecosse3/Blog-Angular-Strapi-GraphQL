@@ -21,6 +21,7 @@ import { AuthService } from './auth/auth.service';
 import { AlertService } from './alert/alert.service';
 import { AlertModule } from './alert/alert.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { MyAccountComponent } from './my-account/my-account.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HomeComponent,
     LoginComponent,
     PageNotFoundComponent,
+    MyAccountComponent,
   ],
   imports: [
     BrowserModule,
