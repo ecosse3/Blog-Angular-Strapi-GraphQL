@@ -6,6 +6,7 @@ import { ArticleComponent } from './article/article.component';
 import { CategoryComponent } from './category/category.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -13,8 +14,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'articles', component: ArticlesComponent },
   { path: 'article/:id', component: ArticleComponent },
-  { path: 'category/:id', component: CategoryComponent },
-
+  {
+    path: 'category/:id',
+    component: CategoryComponent,
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 

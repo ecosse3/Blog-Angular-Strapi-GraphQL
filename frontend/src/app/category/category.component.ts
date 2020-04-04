@@ -35,7 +35,6 @@ export class CategoryComponent implements OnInit, OnDestroy {
         .valueChanges.subscribe((result) => {
           this.data = result.data;
           this.category = this.data.category.name;
-          console.log(this.data);
           this.articles = this.data.category.articles;
           this.loading = result.loading;
           this.errors = result.errors;

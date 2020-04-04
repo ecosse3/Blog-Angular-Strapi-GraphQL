@@ -10,7 +10,6 @@ import { AlertService } from '../alert/alert.service';
 import { Apollo } from 'apollo-angular';
 import { AuthService } from '../auth/auth.service';
 import { TokenStorageService } from '../auth/token-storage.service';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +29,15 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private apollo: Apollo
-  ) {}
+  ) {
+    if (this.authService.isLoggedIn) {
+      if (this.authService.redirectUrl) {
+        this.router.navigateByUrl(this.authService.redirectUrl);
+      } else {
+        this.router.navigate(['/home']);
+      }
+    }
+  }
 
   ngOnInit() {
     this.loginForm = new FormGroup({

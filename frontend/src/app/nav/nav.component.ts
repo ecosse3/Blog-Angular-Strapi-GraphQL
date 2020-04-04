@@ -43,7 +43,6 @@ export class NavComponent implements OnInit, OnDestroy {
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-      console.log(user);
 
       this.queryUserData = this.apollo
         .watchQuery({
