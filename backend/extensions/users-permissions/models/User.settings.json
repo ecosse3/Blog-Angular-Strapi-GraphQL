@@ -59,6 +59,9 @@
       "via": "related",
       "plugin": "upload",
       "required": false
+    },
+    "articles": {
+      "collection": "article"
     }
   }
 }

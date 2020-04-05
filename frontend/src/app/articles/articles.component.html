@@ -1,6 +1,18 @@
 <section>
   <div class="container">
-    <div class="row">
+    <div *ngIf="loading" class="text-center">
+      <div class="lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div *ngIf="!loading" class="row">
       <div class="col-md-4 my-3" *ngFor="let article of articles">
         <!-- Card -->
         <mdb-card>

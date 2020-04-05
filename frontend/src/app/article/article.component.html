@@ -1,7 +1,19 @@
 <!-- Section: Blog v.4 -->
 <section class="my-5">
+  <div *ngIf="loading" class="text-center">
+    <div class="lds-roller">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
   <!-- Grid row -->
-  <div class="row">
+  <div *ngIf="data.article" class="row">
 
     <!-- Grid column -->
     <div class="col-md-12">

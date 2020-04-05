@@ -8,13 +8,8 @@ import { TokenStorageService } from './token-storage.service.js';
 export class AuthService {
   redirectUrl: string;
 
-  options = {
-    autoClose: true,
-  };
-
   constructor(
     private apollo: Apollo,
-    private alert: AlertService,
     private tokenStorageService: TokenStorageService
   ) {}
 

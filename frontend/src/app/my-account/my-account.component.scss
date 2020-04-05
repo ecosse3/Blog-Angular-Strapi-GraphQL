@@ -1,0 +1,32 @@
+.avatar img {
+  position: absolute;
+  left: -50px;
+  top: 20px;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.userData h1 {
+  margin-left: 70px;
+}
+
+ul.info-panel {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.info-panel li {
+  color: #F44336;
+  display: inline-block;
+  padding: 15px;
+}
+
+.info-panel li p {
+  color: #000000;
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+}

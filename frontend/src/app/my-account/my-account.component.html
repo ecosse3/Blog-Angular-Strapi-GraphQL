@@ -1,10 +1,39 @@
 <div class="row">
-  <div class="col-md-12 rounded border">
-    <div class="col-md-8">
-      <div class="avatar"><img [src]="userAvatar" alt=""></div>
-      <div class="userData">
-        Username: {{ userData.data.login.user.username }}
+  <div class="col-md-12">
+    <ul class="info-panel">
+      <li *ngIf="userAdditionalData">
+        <p>Registration date</p>{{ userAdditionalData.user.created_at | date }}
+      </li>
+      <li *ngIf="userArticles">
+        <p>Articles</p> {{ userArticles.articlesConnection.aggregate.count }}
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 shadow rounded">
+    <div class="row mt-3">
+      <div class="col-md-8">
+        <div *ngIf="userData" class="avatar"><img [src]="profilePhoto()" [alt]="userData.data.login.user.username">
+        </div>
+        <div *ngIf="userData" class="userData">
+          <h1> {{ userData.data.login.user.username }} </h1>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="float-right my-2">
+          <button type="button" mdbBtn class="btn-block red rounded text-white" mdbWavesEffect>Change
+            avatar</button>
+          <button type="button" mdbBtn class="btn-block red rounded text-white" mdbWavesEffect>Change
+            password</button>
+        </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div *ngIf="userData" class="col-md-12 my-5">
+    <h2>Your articles</h2>
+    <app-articles [userId]="userData.data.login.user.id"></app-articles>
   </div>
 </div>

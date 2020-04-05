@@ -36,6 +36,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
           this.data = result.data;
           this.category = this.data.category.name;
           this.articles = this.data.category.articles;
+          console.log(result.loading);
           this.loading = result.loading;
           this.errors = result.errors;
         });

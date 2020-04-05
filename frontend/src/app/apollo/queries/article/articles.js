@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 const ARTICLES_QUERY = gql `
-  query Articles {
-    articles {
+  query Articles($id: ID) {
+    articles(where: {user: {id: $id}}) {
       id
       title
       category {

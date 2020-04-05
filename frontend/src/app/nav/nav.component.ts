@@ -69,7 +69,7 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   profilePhoto() {
-    if (this.userLoading || this.userData.user.avatar.url === null) {
+    if (this.userLoading || this.userData.user.avatar === null) {
       return 'https://www.pphfoundation.ca/wp-content/uploads/2018/05/default-avatar.png';
     } else {
       return 'http://localhost:1337' + this.userData.user.avatar.url;
