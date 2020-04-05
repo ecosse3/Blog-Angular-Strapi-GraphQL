@@ -1,18 +1,7 @@
 <app-nav></app-nav>
 
 <main>
-  <ng-container *ngIf="router.url === '/home'; else elseTemplate">
-    <app-alert></app-alert>
-    <router-outlet></router-outlet>
-  </ng-container>
-
-  <ng-template #elseTemplate>
-    <div class="container my-6">
-      <app-alert></app-alert>
-      <router-outlet></router-outlet>
-    </div>
-  </ng-template>
-
+  <router-outlet></router-outlet>
 </main>
 
 <app-footer></app-footer>

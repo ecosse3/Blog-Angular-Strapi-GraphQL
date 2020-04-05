@@ -1,5 +1,5 @@
 <section>
-  <div class="container">
+  <div [ngClass]="{'container my-6': !userId}">
     <div *ngIf="loading" class="text-center">
       <div class="lds-roller">
         <div></div>
@@ -31,7 +31,7 @@
           <!--Card content-->
           <mdb-card-body>
             <a routerLink="/category/{{ article.category.id }}">
-              <mdb-badge *ngIf="article.category; else noCategory" color="red" class="float-right">
+              <mdb-badge *ngIf="article.category; else noCategory" color="indigo accent-4" class="float-right">
                 {{article.category.name}}</mdb-badge>
             </a>
             <!--Title-->
@@ -45,7 +45,7 @@
             </mdb-card-text>
 
             <a routerLink="/article/{{ article.id }}" routerLinkActive="active" href="#" mdbBtn
-              class="light-blue rounded text-white" mdbWavesEffect>Read more...</a>
+              class="indigo accent-4 rounded text-white" mdbWavesEffect>Read more...</a>
           </mdb-card-body>
         </mdb-card>
       </div>

@@ -1,6 +1,7 @@
  <header>
    <!--Navbar-->
-   <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark light-blue" [containerInside]="false" mdbStickyHeader>
+   <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark orange lighten-1" [containerInside]="false"
+     mdbStickyHeader>
      <div class="container">
        <!-- Navbar brand -->
        <mdb-navbar-brand><a class="navbar-brand" href="#">Kvsky Blog</a></mdb-navbar-brand>
@@ -37,7 +38,7 @@
          <ng-container *ngIf="isLoggedIn; else guest">
            <ul class=" navbar-nav ml-auto nav-flex-icons">
              <li class="nav-item envelope-icon-pos">
-               <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
+               <a class="nav-link">0 <mdb-icon fas icon="envelope"></mdb-icon></a>
              </li>
              <li class="nav-item avatar dropdown " dropdown>
                <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle no-caret waves-light"

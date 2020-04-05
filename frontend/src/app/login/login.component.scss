@@ -1,0 +1,24 @@
+$font-color: #2d313f;
+$border-color: #979797;
+
+@mixin full-bk($image) {
+  background: url($image) no-repeat center center fixed;
+  background-size: cover;
+}
+
+.login-page {
+  @include full-bk('src/assets/login-bk.svg');
+
+  height: calc(100vh - 53px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-box {
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 38px 0 rgba(45, 49, 63, 0.4);
+  display: flex;
+  padding: 40px;
+}

@@ -1,0 +1,13 @@
+@mixin full-bk($image) {
+  background: url($image) no-repeat center center fixed;
+  background-size: cover;
+}
+
+.not-found-page {
+  @include full-bk('src/assets/login-bk.svg');
+  color: #ffffff;
+  height: calc(100vh - 53px);
+  display: flex;
+  align-items: center;
+  padding-left: 13vw;
+}

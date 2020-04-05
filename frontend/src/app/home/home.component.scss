@@ -3,7 +3,8 @@
 }
 
 .intro-2 {
-  background: url("https://mdbootstrap.com/img/Photos/Others/img%20(42).jpg")no-repeat center center;
+  background: url("https://mdbootstrap.com/img/Photos/Others/img%20(42).jpg")
+    no-repeat center center;
   background-size: cover;
 }
 
@@ -26,7 +27,11 @@
 }
 
 .rgba-gradient .full-bg-img {
-  background: linear-gradient(45deg, rgba(83, 125, 210, 0.4), rgba(178, 30, 123, 0.4) 100%);
+  background: linear-gradient(
+    45deg,
+    rgba(83, 125, 210, 0.4),
+    rgba(178, 30, 123, 0.4) 100%
+  );
 }
 
 .full-bg-img {
@@ -34,7 +39,7 @@
 }
 
 .card {
-  background-color: rgba(229, 228, 255, 0.2);
+  background-color: rgba(8, 0, 255, 0.2);
 }
 
 .md-form .prefix {
@@ -51,7 +56,6 @@ h6 {
 }
 
 @media (max-width: 740px) {
-
   .full-height,
   .full-height body,
   .full-height header,

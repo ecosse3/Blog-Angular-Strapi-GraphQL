@@ -39,6 +39,7 @@ export class MyAccountComponent implements OnInit, OnDestroy {
         this.userAdditionalData = result.data;
         this.userLoading = result.loading;
         this.userErrors = result.errors;
+        console.log(result.data);
       });
 
     this.queryCountUserArticles = this.apollo

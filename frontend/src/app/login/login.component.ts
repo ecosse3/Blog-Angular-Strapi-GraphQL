@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     private apollo: Apollo
   ) {
     if (this.authService.isLoggedIn) {
-      if (this.authService.redirectUrl) {
+      if (!!this.authService.redirectUrl) {
         this.router.navigateByUrl(this.authService.redirectUrl);
       } else {
         this.router.navigate(['/my-account']);

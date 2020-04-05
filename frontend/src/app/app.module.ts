@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,6 +50,8 @@ import { FooterComponent } from './footer/footer.component';
     MarkdownModule.forRoot(),
     ReactiveFormsModule,
     AlertModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
