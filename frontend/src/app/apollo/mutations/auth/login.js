@@ -7,6 +7,10 @@ const LOGIN_MUTATION = gql `
         id
         email
         username
+        role {
+          id
+          name
+        }
         }
       jwt
     }

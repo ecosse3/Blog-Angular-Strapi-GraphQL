@@ -5,12 +5,7 @@ const USER_DATA = gql `
     user(id: $id) {
     created_at
     updated_at
-    role {
-      id
-      name
-      description
-      type
-    }
+    bio
     avatar {
       name
       url

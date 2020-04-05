@@ -62,6 +62,10 @@
     },
     "articles": {
       "collection": "article"
+    },
+    "bio": {
+      "type": "text",
+      "maxLength": 400
     }
   }
 }
