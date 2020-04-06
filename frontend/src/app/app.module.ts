@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GraphQLModule } from './graphql.module';
@@ -22,10 +22,13 @@ import { AlertComponent } from './alert/alert.component';
 import { AuthService } from './auth/auth.service';
 import { AlertService } from './alert/alert.service';
 import { AlertModule } from './alert/alert.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DialogUpdateBioComponent } from './dialog-update-bio/dialog-update-bio.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { ProfileComponent } from './profile/profile.component';
     MyAccountComponent,
     FooterComponent,
     ProfileComponent,
+    DialogUpdateBioComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,11 +55,15 @@ import { ProfileComponent } from './profile/profile.component';
     RouterModule,
     MarkdownModule.forRoot(),
     ReactiveFormsModule,
+    FormsModule,
     AlertModule,
     MatInputModule,
     MatButtonModule,
+    MatSnackBarModule,
+    MatDialogModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
+  entryComponents: [DialogUpdateBioComponent],
 })
 export class AppModule {}

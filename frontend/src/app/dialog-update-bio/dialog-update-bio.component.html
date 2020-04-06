@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>UPDATE BIO</h2>
+<mat-dialog-content>
+  <mat-form-field class="full-hw">
+    <textarea matInput #bio maxlength="400" [(ngModel)]="data.bio" cdkFocusInitial>{{data.bio}}</textarea>
+    <mat-hint align="end">{{bio.value.length}} / 400</mat-hint>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close [mat-dialog-close]="data.bio">Update</button>
+  <button mat-button mat-dialog-close mat-dialog-close="close">Cancel</button>
+</mat-dialog-actions>

@@ -1,6 +1,7 @@
 <ng-container *ngIf="userAdditionalData.user !== null && userArticles && !userLoading; else profileDoesNotExists">
 
   <div class="container my-6">
+    <app-alert></app-alert>
     <div *ngIf="userLoading" class="text-center">
       <div class="lds-roller">
         <div></div>
@@ -29,7 +30,7 @@
             <p>Articles</p> {{ userArticles.articlesConnection.aggregate.count }}
           </li>
           <li>
-            <p>Flights</p> 37
+            <p>Flights</p> 0
           </li>
         </ul>
       </div>
@@ -57,7 +58,8 @@
                 class="btn-block indigo accent-4 rounded text-white" mdbWavesEffect><i class="fa fa-envelope mr-2"
                   aria-hidden="true"></i> Send message</button>
               <button *ngIf="loggedUserProfile" type="button" mdbBtn
-                class="btn-block indigo accent-4 rounded text-white" mdbWavesEffect>Update
+                class="btn-block indigo accent-4 rounded text-white" mdbWavesEffect
+                (click)="openUpdateBioDialog()">Update
                 bio</button>
               <button *ngIf="loggedUserProfile" type="button" mdbBtn
                 class="btn-block indigo accent-4 rounded text-white" mdbWavesEffect>Change

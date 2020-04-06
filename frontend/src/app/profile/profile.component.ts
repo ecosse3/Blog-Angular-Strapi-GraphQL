@@ -4,7 +4,12 @@ import { Subscription } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 import USER_DATA from '../apollo/queries/user/user-data.js';
 import COUNT_USER_ARTICLES from '../apollo/queries/user/count-user-articles.js';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import BIO_MUTATION from '../apollo/mutations/user/bio.js';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { AlertService } from '../alert/alert.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogUpdateBioComponent } from '../dialog-update-bio/dialog-update-bio.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile',
@@ -26,17 +31,22 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(
     private tokenStorageService: TokenStorageService,
     private apollo: Apollo,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private alertService: AlertService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
     this.userData = this.tokenStorageService.getUser();
 
     this.route.paramMap.subscribe((params: ParamMap) => {
-      if (
-        this.userData.data.login.user.id === params.get('id') ||
-        params.get('id') === null
-      ) {
+      if (this.userData.data.login.user.id === params.get('id')) {
+        this.loggedUserProfile = true;
+        this.id = this.userData.data.login.user.id;
+        this.router.navigate(['/my-account', { redirect: true }]);
+      } else if (params.get('id') === null) {
         this.loggedUserProfile = true;
         this.id = this.userData.data.login.user.id;
       } else {
@@ -83,5 +93,57 @@ export class ProfileComponent implements OnInit, OnDestroy {
     } else {
       return 'http://localhost:1337' + this.userAdditionalData.user.avatar.url;
     }
+  }
+
+  openUpdateBioDialog() {
+    const dialogRef = this.dialog.open(DialogUpdateBioComponent, {
+      width: '500px',
+      height: '300px',
+      data: { bio: this.userAdditionalData.user.bio },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'close') {
+        return;
+      }
+
+      if (result !== this.userAdditionalData.user.bio) {
+        this.updateBio(this.id, result);
+      } else {
+        this.snackBar.open('Please change your bio to a new one!', 'Dismiss', {
+          duration: 4000,
+        });
+      }
+    });
+  }
+
+  updateBio(userid: number, newbio: string) {
+    this.apollo
+      .mutate({
+        mutation: BIO_MUTATION,
+        variables: {
+          input: {
+            where: {
+              id: userid,
+            },
+            data: {
+              bio: newbio,
+            },
+          },
+        },
+      })
+      .subscribe(
+        (data) => {
+          this.userAdditionalData.user.bio = newbio;
+          this.snackBar.open('Your bio has been updated!', 'Dismiss', {
+            duration: 4000,
+          });
+        },
+        (error) => {
+          this.snackBar.open(error, 'Dismiss', {
+            duration: 4000,
+          });
+        }
+      );
   }
 }
