@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './auth/auth.guard';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -22,6 +23,11 @@ const routes: Routes = [
   {
     path: 'my-account',
     component: MyAccountComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'profile/:id',
+    component: ProfileComponent,
     canActivate: [AuthGuard],
   },
   { path: '**', component: PageNotFoundComponent },

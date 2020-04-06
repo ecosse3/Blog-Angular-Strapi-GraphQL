@@ -39,7 +39,8 @@
             <!-- Category -->
             <mdb-badge color="indigo accent-4">{{ data.article.category.name }}</mdb-badge>
             <!-- Data -->
-            <p>Written by <a><strong>{{ data.article.user.username }}</strong></a> on
+            <p>Written by <a routerLink="/profile/{{ data.article.user.id }}">{{ data.article.user.username }}</a>
+              on
               {{ data.article.published_at | date:'longDate'}}
             </p>
           </div>

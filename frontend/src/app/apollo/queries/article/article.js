@@ -14,6 +14,7 @@ const ARTICLE_QUERY = gql `
         name
       }
       user {
+        id
         username
       }
       published_at

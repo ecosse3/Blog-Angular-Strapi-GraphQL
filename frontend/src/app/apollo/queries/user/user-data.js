@@ -3,6 +3,13 @@ import gql from "graphql-tag";
 const USER_DATA = gql `
   query USERDATA($id: ID!) {
     user(id: $id) {
+    id
+    email
+    username
+    role {
+      id
+      name
+    }
     created_at
     updated_at
     bio

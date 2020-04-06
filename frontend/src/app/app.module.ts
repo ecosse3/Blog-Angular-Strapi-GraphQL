@@ -25,6 +25,7 @@ import { AlertModule } from './alert/alert.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FooterComponent } from './footer/footer.component';
     PageNotFoundComponent,
     MyAccountComponent,
     FooterComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
