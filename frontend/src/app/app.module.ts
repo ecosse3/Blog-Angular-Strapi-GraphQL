@@ -29,6 +29,7 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DialogUpdateBioComponent } from './dialog-update-bio/dialog-update-bio.component';
+import { DialogChangePasswordComponent } from './dialog-change-password/dialog-change-password.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { DialogUpdateBioComponent } from './dialog-update-bio/dialog-update-bio.
     FooterComponent,
     ProfileComponent,
     DialogUpdateBioComponent,
+    DialogChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +66,6 @@ import { DialogUpdateBioComponent } from './dialog-update-bio/dialog-update-bio.
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
-  entryComponents: [DialogUpdateBioComponent],
+  entryComponents: [DialogUpdateBioComponent, DialogChangePasswordComponent],
 })
 export class AppModule {}

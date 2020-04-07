@@ -1,19 +1,21 @@
+<div class="container my-6">
+  <div *ngIf="userLoading" class="text-center">
+    <div class="lds-roller">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>
 <ng-container *ngIf="userAdditionalData.user !== null && userArticles && !userLoading; else profileDoesNotExists">
 
   <div class="container my-6">
     <app-alert></app-alert>
-    <div *ngIf="userLoading" class="text-center">
-      <div class="lds-roller">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-12">
         <ul *ngIf="userAdditionalData && userArticles &&  !userLoading" class="info-panel">
@@ -62,7 +64,8 @@
                 (click)="openUpdateBioDialog()">Update
                 bio</button>
               <button *ngIf="loggedUserProfile" type="button" mdbBtn
-                class="btn-block indigo accent-4 rounded text-white" mdbWavesEffect>Change
+                class="btn-block indigo accent-4 rounded text-white" mdbWavesEffect
+                (click)="openChangePasswordDialog()">Change
                 password</button>
             </div>
           </div>
@@ -89,5 +92,7 @@
 </ng-container>
 
 <ng-template #profileDoesNotExists>
-  <app-page-not-found></app-page-not-found>
+  <div class="my-minus-6">
+    <app-page-not-found text="Profile not found!"></app-page-not-found>
+  </div>
 </ng-template>

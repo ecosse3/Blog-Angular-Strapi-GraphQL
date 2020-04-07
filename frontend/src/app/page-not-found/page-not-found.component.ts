@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
@@ -7,9 +7,11 @@ import { Location } from '@angular/common';
   styleUrls: ['./page-not-found.component.scss'],
 })
 export class PageNotFoundComponent implements OnInit {
+  @Input() text: string;
+
   constructor(private location: Location) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {}
 
   goBack() {
     this.location.back();

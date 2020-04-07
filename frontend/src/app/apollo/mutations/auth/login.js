@@ -7,9 +7,13 @@ const LOGIN_MUTATION = gql `
         id
         email
         username
+        confirmed
+        blocked
         role {
           id
           name
+          description
+          type
         }
         }
       jwt

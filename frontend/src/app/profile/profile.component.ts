@@ -4,12 +4,13 @@ import { Subscription } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 import USER_DATA from '../apollo/queries/user/user-data.js';
 import COUNT_USER_ARTICLES from '../apollo/queries/user/count-user-articles.js';
-import BIO_MUTATION from '../apollo/mutations/user/bio.js';
+import UPDATE_USER from '../apollo/mutations/user/update.js';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AlertService } from '../alert/alert.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogUpdateBioComponent } from '../dialog-update-bio/dialog-update-bio.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DialogUpdateBioComponent } from '../dialog-update-bio/dialog-update-bio.component';
+import { DialogChangePasswordComponent } from './../dialog-change-password/dialog-change-password.component';
 
 @Component({
   selector: 'app-profile',
@@ -87,6 +88,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.queryCountUserArticles.unsubscribe();
   }
 
+  userNotFound() {
+    this.router.navigate(['/page-not-found']);
+  }
+
   profilePhoto() {
     if (this.userLoading || this.userAdditionalData.user.avatar === null) {
       return 'https://www.pphfoundation.ca/wp-content/uploads/2018/05/default-avatar.png';
@@ -99,6 +104,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(DialogUpdateBioComponent, {
       width: '500px',
       height: '300px',
+      disableClose: true,
       data: { bio: this.userAdditionalData.user.bio },
     });
 
@@ -120,7 +126,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   updateBio(userid: number, newbio: string) {
     this.apollo
       .mutate({
-        mutation: BIO_MUTATION,
+        mutation: UPDATE_USER,
         variables: {
           input: {
             where: {
@@ -145,5 +151,22 @@ export class ProfileComponent implements OnInit, OnDestroy {
           });
         }
       );
+  }
+
+  openChangePasswordDialog() {
+    const dialogRef = this.dialog.open(DialogChangePasswordComponent, {
+      width: '300px',
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'close') {
+        return;
+      }
+
+      if (result !== this.userAdditionalData.user.bio) {
+        // this.changePassword(this.id, result);
+      }
+    });
   }
 }

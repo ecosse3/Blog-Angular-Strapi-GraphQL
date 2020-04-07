@@ -10,6 +10,7 @@ import { AlertService } from '../alert/alert.service';
 import { Apollo } from 'apollo-angular';
 import { AuthService } from '../auth/auth.service';
 import { TokenStorageService } from '../auth/token-storage.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
