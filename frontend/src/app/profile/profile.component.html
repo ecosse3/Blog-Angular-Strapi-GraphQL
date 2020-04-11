@@ -12,7 +12,7 @@
     </div>
   </div>
 </div>
-<ng-container *ngIf="userAdditionalData.user !== null && userArticles && !userLoading; else profileDoesNotExists">
+<ng-container *ngIf="!userLoading && userAdditionalData.user !== null">
 
   <div class="container my-6">
     <app-alert></app-alert>
@@ -23,7 +23,7 @@
             <p>Role</p>{{ userAdditionalData.user.role.name}}
           </li>
           <li>
-            <p>E-mail</p>{{ userAdditionalData.user.email}}
+            <p>E-mail</p><a href="mailto:{{ userAdditionalData.user.email }}">{{ userAdditionalData.user.email }}</a>
           </li>
           <li>
             <p>Registration date</p>{{ userAdditionalData.user.created_at | date }}
@@ -42,12 +42,12 @@
         <div *ngIf="userAdditionalData && !userLoading" class="row mt-3">
           <div class="col-md-8">
             <ng-container *ngIf="loggedUserProfile; else guestOptions">
-              <div class=" avatar"><a><img mdbTooltip="Change avatar" placement="left" [src]="profilePhoto()"
-                    [alt]="userAdditionalData.user.username"></a>
+              <div class="avatar" (click)="openChangeAvatarDialog()"><a><img mdbTooltip="Change avatar" placement="left"
+                    [src]="profilePhoto()" [alt]="userAdditionalData.user.username"></a>
               </div>
             </ng-container>
             <ng-template #guestOptions>
-              <div class=" avatar"><img [src]="profilePhoto()" [alt]="userAdditionalData.user.username"></div>
+              <div class="avatar"><img [src]="profilePhoto()" [alt]="userAdditionalData.user.username"></div>
             </ng-template>
             <div class="userData">
               <h1> {{ userAdditionalData.user.username }} </h1>
@@ -91,8 +91,8 @@
 
 </ng-container>
 
-<ng-template #profileDoesNotExists>
+<ng-container *ngIf="!userLoading && userAdditionalData.user === null">
   <div class="my-minus-6">
     <app-page-not-found text="Profile not found!"></app-page-not-found>
   </div>
-</ng-template>
+</ng-container>

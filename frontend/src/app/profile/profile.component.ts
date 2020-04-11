@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogUpdateBioComponent } from '../dialog-update-bio/dialog-update-bio.component';
 import { DialogChangePasswordComponent } from './../dialog-change-password/dialog-change-password.component';
+import { DialogChangeAvatarComponent } from '../dialog-change-avatar/dialog-change-avatar.component';
 
 @Component({
   selector: 'app-profile',
@@ -25,6 +26,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userArticles: any;
   loggedUserProfile: boolean;
   id: any;
+  userToken: any;
 
   private queryUserData: Subscription;
   private queryCountUserArticles: Subscription;
@@ -41,6 +43,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userData = this.tokenStorageService.getUser();
+    this.userToken = this.tokenStorageService.getToken();
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       if (this.userData.data.login.user.id === params.get('id')) {
@@ -94,7 +97,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   profilePhoto() {
     if (this.userLoading || this.userAdditionalData.user.avatar === null) {
-      return 'https://www.pphfoundation.ca/wp-content/uploads/2018/05/default-avatar.png';
+      return 'http://localhost:1337/uploads/default-avatar.png';
     } else {
       return 'http://localhost:1337' + this.userAdditionalData.user.avatar.url;
     }
@@ -168,5 +171,90 @@ export class ProfileComponent implements OnInit, OnDestroy {
         // this.changePassword(this.id, result);
       }
     });
+  }
+
+  openChangeAvatarDialog() {
+    const dialogRef = this.dialog.open(DialogChangeAvatarComponent, {
+      width: '600px',
+      height: '300px',
+      disableClose: true,
+      data: {
+        avatar: this.userAdditionalData.user.avatar,
+        token: this.userToken,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'close') {
+        return;
+      }
+
+      if (result === 'delete') {
+        this.deleteAvatar(this.id);
+      }
+
+      if (result !== 'close' && result !== 'delete') {
+        this.changeAvatar(this.id, result[0]);
+      }
+    });
+  }
+
+  deleteAvatar(userid: number) {
+    this.apollo
+      .mutate({
+        mutation: UPDATE_USER,
+        variables: {
+          input: {
+            where: {
+              id: userid,
+            },
+            data: {
+              avatar: null,
+            },
+          },
+        },
+      })
+      .subscribe(
+        (data) => {
+          this.userAdditionalData.user.avatar = null;
+          this.snackBar.open('Your avatar has been removed!', 'Dismiss', {
+            duration: 4000,
+          });
+        },
+        (error) => {
+          this.snackBar.open(error, 'Dismiss', {
+            duration: 4000,
+          });
+        }
+      );
+  }
+
+  changeAvatar(userid: number, data: any) {
+    this.apollo
+      .mutate({
+        mutation: UPDATE_USER,
+        variables: {
+          input: {
+            where: {
+              id: userid,
+            },
+            data: {
+              avatar: data.id,
+            },
+          },
+        },
+      })
+      .subscribe(
+        (data: any) => {
+          this.snackBar.open('Your avatar has been changed!', 'Dismiss', {
+            duration: 4000,
+          });
+        },
+        (error) => {
+          this.snackBar.open(error, 'Dismiss', {
+            duration: 4000,
+          });
+        }
+      );
   }
 }

@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AuthGuard } from './auth/auth.guard';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MyTravelsComponent } from './my-travels/my-travels.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path: 'my-account',
     component: MyAccountComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'my-travels',
+    component: MyTravelsComponent,
     canActivate: [AuthGuard],
   },
   {

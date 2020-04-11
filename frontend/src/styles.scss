@@ -5,8 +5,19 @@
 @import url("https://fonts.googleapis.com/css?family=Staatliches");
 @import 'styles/comet-chat-theme.scss';
 
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 a {
   text-decoration: none;
+  color: #1b47db;
 }
 
 h1 {
@@ -40,6 +51,10 @@ h1 {
 .uk-navbar-container {
   background: #fff !important;
   font-family: Staatliches;
+}
+
+.navbar-nav .dropdown-menu.dropdown {
+  top: 150% !important;
 }
 
 img:hover {
@@ -173,12 +188,12 @@ img:hover {
   }
 }
 
-html,
-body {
-  height: 100%;
-}
+// ----------------- FILE UPLOAD ------------------
 
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+.fileDropCon {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100px;
+  color: #0782d0;
 }

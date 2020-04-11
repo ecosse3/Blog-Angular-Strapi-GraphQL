@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>CHANGE AVATAR</h2>
+
+<mat-dialog-content class="mdcontent">
+
+  <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" contentClassName="fileDropCon"
+    multiple="false" accept=".png, .jpg, .jpeg">
+    <ng-template class="ngx-file-drop__content" ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+      <span *ngIf="files?.length === 0">Drag & drop avatar here</span>
+      <span *ngIf="files?.length > 0">
+        <span *ngFor="let file of files">
+          <i class="fas fa-image" aria-hidden="true"></i>
+          {{ file.relativePath | slice:0:30 }}{{ file.relativePath.length > 30 ? '...' : '' }}
+        </span>
+      </span>
+      <button mat-button (click)="openFileSelector()">Browse files</button>
+    </ng-template>
+  </ngx-file-drop>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close [mat-dialog-close]="newAvatarData"
+    [disabled]="newAvatarData?.length === 0">Save</button>
+  <button mat-button mat-dialog-close mat-dialog-close="close">Cancel</button>
+  <span class="spacer"></span>
+  <button *ngIf="data.avatar" class="" mat-raised-button color="warn" mat-dialog-close mat-dialog-close="delete">Delete
+    current avatar</button>
+</mat-dialog-actions>

@@ -1,8 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import MyGoogleChartsSettings from './app-maps-api-key';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSortModule } from '@angular/material/sort';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,18 +23,23 @@ import { MarkdownModule } from 'ngx-markdown';
 import { ArticleComponent } from './article/article.component';
 import { CategoryComponent } from './category/category.component';
 import { LoginComponent } from './login/login.component';
-import { AlertComponent } from './alert/alert.component';
 import { AuthService } from './auth/auth.service';
-import { AlertService } from './alert/alert.service';
 import { AlertModule } from './alert/alert.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatDialogModule } from '@angular/material/dialog';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DialogUpdateBioComponent } from './dialog-update-bio/dialog-update-bio.component';
 import { DialogChangePasswordComponent } from './dialog-change-password/dialog-change-password.component';
+import { DialogChangeAvatarComponent } from './dialog-change-avatar/dialog-change-avatar.component';
+import { NgxFileDropModule } from 'ngx-file-drop';
+import { TravelerMapComponent } from './traveler-map/traveler-map.component';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { MyTravelsComponent } from './my-travels/my-travels.component';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
+
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -46,10 +56,14 @@ import { DialogChangePasswordComponent } from './dialog-change-password/dialog-c
     ProfileComponent,
     DialogUpdateBioComponent,
     DialogChangePasswordComponent,
+    DialogChangeAvatarComponent,
+    TravelerMapComponent,
+    MyTravelsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CommonModule,
     GraphQLModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
@@ -63,9 +77,25 @@ import { DialogChangePasswordComponent } from './dialog-change-password/dialog-c
     MatButtonModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
+    NgxFileDropModule,
+    Ng2GoogleChartsModule,
+    MatSelectCountryModule,
+    MatSortModule,
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    {
+      provide: 'googleChartsSettings',
+      useValue: MyGoogleChartsSettings,
+    },
+  ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogUpdateBioComponent, DialogChangePasswordComponent],
+  entryComponents: [
+    DialogUpdateBioComponent,
+    DialogChangePasswordComponent,
+    DialogChangeAvatarComponent,
+  ],
 })
 export class AppModule {}

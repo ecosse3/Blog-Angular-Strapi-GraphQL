@@ -23,7 +23,6 @@ const USER_UPDATE = gql `
                     url
                     size
                 }
-
             }
        }
     }
