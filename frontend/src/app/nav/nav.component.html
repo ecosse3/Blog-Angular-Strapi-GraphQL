@@ -29,6 +29,22 @@
              </div>
            </li>
 
+           <!-- Dropdown -->
+           <li *ngIf="data" class="nav-item dropdown" dropdown routerLinkActive="active">
+             <a dropdownToggle mdbWavesEffect type=" button" class="nav-link dropdown-toggle waves-light"
+               mdbWavesEffect>Traveler Zone<span class="caret"></span></a>
+             <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+               <a class="dropdown-item waves-light" routerLink="/visited-countries" routerLinkActive="active"
+                 mdbWavesEffect>Visited
+                 Countries</a>
+               <a class="dropdown-item waves-light" routerLink="/top-flights" routerLinkActive="active"
+                 mdbWavesEffect>Top
+                 Flights</a>
+               <a class="dropdown-item waves-light" routerLink="/travelers" routerLinkActive="active" mdbWavesEffect>Top
+                 Travelers</a>
+             </div>
+           </li>
+
            <li class="nav-item" routerLinkActive="active">
              <a class="nav-link waves-light" mdbWavesEffect>Search flight</a>
            </li>
@@ -46,9 +62,11 @@
                  <img [src]="profilePhoto()" alt="" class="img-fluid rounded-circle z-depth-0 avatar-height"></a>
                <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
                  <a routerLink="/my-account" routerLinkActive="active" class="dropdown-item waves-light" mdbWavesEffect
-                   href="#">My account</a>
+                   href="#">My Account</a>
                  <a routerLink="/my-flights" routerLinkActive="active" class="dropdown-item waves-light" mdbWavesEffect
-                   href="#">My flights</a>
+                   href="#">My Flights</a>
+                 <a routerLink="/my-travels" routerLinkActive="active" class="dropdown-item waves-light" mdbWavesEffect
+                   href="#">My Travels</a>
                  <a (click)="logout()" class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
                </div>
              </li>
