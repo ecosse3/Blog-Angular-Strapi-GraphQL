@@ -119,6 +119,7 @@ export const COUNTRY_LIST: Country[] = [
   { name: 'Kazakhstan', code: 'KZ' },
   { name: 'Kenya', code: 'KE' },
   { name: 'Kiribati', code: 'KI' },
+  { name: 'Kosovo', code: 'XK' },
   { name: "Korea, Democratic People's Republic of", code: 'KP' },
   { name: 'Korea, Republic of', code: 'KR' },
   { name: 'Kuwait', code: 'KW' },

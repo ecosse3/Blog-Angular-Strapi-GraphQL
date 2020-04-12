@@ -10,6 +10,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MyTravelsComponent } from './my-travels/my-travels.component';
+import { VisitedCountriesComponent } from './traveler-zone/visited-countries/visited-countries.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -35,6 +36,11 @@ const routes: Routes = [
     path: 'profile/:id',
     component: ProfileComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'traveler-zone/visited-countries',
+    component: VisitedCountriesComponent,
+    canActivate: [AuthGuard]
   },
   { path: '**', component: PageNotFoundComponent },
 ];

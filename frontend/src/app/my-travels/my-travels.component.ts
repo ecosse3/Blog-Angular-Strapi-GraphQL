@@ -110,6 +110,7 @@ export class MyTravelsComponent implements OnInit, OnDestroy {
   }
 
   addCountry(event: { region: string }) {
+    console.log(event.region);
     // Check if exists in array
     for (let i = 1; i < this.mapChart.dataTable.length; i++) {
       if (this.mapChart.dataTable[i][0] === event.region) {

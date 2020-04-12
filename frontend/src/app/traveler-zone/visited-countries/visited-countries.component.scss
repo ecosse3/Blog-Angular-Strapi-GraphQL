@@ -1,0 +1,19 @@
+.active {
+  background-color: #304FFE;
+  color: #ffffff;
+}
+
+table {
+  width: 100%;
+}
+
+::ng-deep tr.mat-row {
+  height: 70px !important;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}

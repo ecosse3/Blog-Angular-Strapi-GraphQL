@@ -5,13 +5,11 @@ import MyGoogleChartsSettings from './app-maps-api-key';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import {
-  MatPaginatorModule,
-  MatPaginatorIntl,
-} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,13 +36,13 @@ import { DialogUpdateBioComponent } from './dialog-update-bio/dialog-update-bio.
 import { DialogChangePasswordComponent } from './dialog-change-password/dialog-change-password.component';
 import { DialogChangeAvatarComponent } from './dialog-change-avatar/dialog-change-avatar.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
-import { TravelerMapComponent } from './traveler-map/traveler-map.component';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { MyTravelsComponent } from './my-travels/my-travels.component';
-import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
+import * as _ from 'lodash-es';
 
 import { CommonModule } from '@angular/common';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { VisitedCountriesComponent } from './traveler-zone/visited-countries/visited-countries.component';
 
 @NgModule({
   declarations: [
@@ -62,8 +60,8 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     DialogUpdateBioComponent,
     DialogChangePasswordComponent,
     DialogChangeAvatarComponent,
-    TravelerMapComponent,
     MyTravelsComponent,
+    VisitedCountriesComponent,
   ],
   imports: [
     BrowserModule,
