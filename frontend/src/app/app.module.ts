@@ -5,9 +5,13 @@ import MyGoogleChartsSettings from './app-maps-api-key';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import {
+  MatPaginatorModule,
+  MatPaginatorIntl,
+} from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,6 +44,7 @@ import { MyTravelsComponent } from './my-travels/my-travels.component';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 import { CommonModule } from '@angular/common';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -83,6 +88,8 @@ import { CommonModule } from '@angular/common';
     Ng2GoogleChartsModule,
     MatSelectCountryModule,
     MatSortModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
   ],
   providers: [
     AuthService,
@@ -90,6 +97,7 @@ import { CommonModule } from '@angular/common';
       provide: 'googleChartsSettings',
       useValue: MyGoogleChartsSettings,
     },
+    { provide: MAT_DATE_LOCALE, useValue: 'pl-PL' },
   ],
   bootstrap: [AppComponent],
   entryComponents: [

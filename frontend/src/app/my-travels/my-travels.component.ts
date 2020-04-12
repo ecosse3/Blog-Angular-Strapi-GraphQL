@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { GoogleChartInterface, ChartSelectEvent } from 'ng2-google-charts';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -15,7 +14,7 @@ import { Subscription } from 'rxjs';
 export interface PeriodicElement {
   position: number;
   name: string;
-  date: string;
+  date: string | object;
   symbol: string;
 }
 
@@ -26,7 +25,7 @@ const ELEMENT_DATA: PeriodicElement[] = [];
   templateUrl: './my-travels.component.html',
   styleUrls: ['./my-travels.component.scss'],
 })
-export class MyTravelsComponent implements OnInit {
+export class MyTravelsComponent implements OnInit, OnDestroy {
   selectedCountry: any;
   loaded = false;
   userData: any;
@@ -64,6 +63,7 @@ export class MyTravelsComponent implements OnInit {
 
   ngOnInit() {
     this.userData = this.tokenStorageService.getUser();
+    this.paginator._intl.itemsPerPageLabel = 'Countries per page:';
 
     this.queryUserCountries = this.apollo
       .watchQuery({
@@ -86,6 +86,7 @@ export class MyTravelsComponent implements OnInit {
             this.mapChart.dataTable.push(result.data.user.countries.map[index]);
           }
 
+          // tslint:disable-next-line: prefer-for-of
           for (
             let index = 0;
             index < result.data.user.countries.list.length;
@@ -94,11 +95,7 @@ export class MyTravelsComponent implements OnInit {
             ELEMENT_DATA.push(result.data.user.countries.list[index]);
           }
 
-          this.visitedCountriesSource = new MatTableDataSource<PeriodicElement>(
-            ELEMENT_DATA
-          );
-          this.visitedCountriesSource.paginator = this.paginator;
-          this.visitedCountriesSource.sort = this.sort;
+          this.refreshElementData();
         }
       });
   }
@@ -113,7 +110,7 @@ export class MyTravelsComponent implements OnInit {
   }
 
   addCountry(event: { region: string }) {
-    //Check if exists in array
+    // Check if exists in array
     for (let i = 1; i < this.mapChart.dataTable.length; i++) {
       if (this.mapChart.dataTable[i][0] === event.region) {
         const indexM = this.mapChart.dataTable.findIndex(
@@ -126,17 +123,13 @@ export class MyTravelsComponent implements OnInit {
         if (indexT > -1) {
           ELEMENT_DATA.splice(indexT, 1);
 
+          // tslint:disable-next-line: no-shadowed-variable
           ELEMENT_DATA.forEach((element, i) => {
             element.position = i + 1;
           });
         }
 
-        this.visitedCountriesSource = new MatTableDataSource<PeriodicElement>(
-          ELEMENT_DATA
-        );
-
-        this.visitedCountriesSource.paginator = this.paginator;
-        this.visitedCountriesSource.sort = this.sort;
+        this.refreshElementData();
 
         this.mapChart.component.draw();
         return;
@@ -144,18 +137,15 @@ export class MyTravelsComponent implements OnInit {
     }
 
     this.mapChart.dataTable.push([event.region]);
+
     ELEMENT_DATA.push({
       position: ELEMENT_DATA.length + 1,
       name: this.findCountryName(event.region),
-      date: 'Add date',
+      date: 'Pick a date',
       symbol: event.region,
     });
-    this.visitedCountriesSource = new MatTableDataSource<PeriodicElement>(
-      ELEMENT_DATA
-    );
 
-    this.visitedCountriesSource.paginator = this.paginator;
-    this.visitedCountriesSource.sort = this.sort;
+    this.refreshElementData();
 
     this.mapChart.component.draw();
   }
@@ -184,6 +174,7 @@ export class MyTravelsComponent implements OnInit {
                 map: this.mapChart.dataTable,
                 list: ELEMENT_DATA,
               },
+              countriesCount: ELEMENT_DATA.length,
             },
           },
         },
@@ -206,13 +197,27 @@ export class MyTravelsComponent implements OnInit {
 
   saveButtonState() {
     if (
-      this.userCountries.user.countries.list &&
-      this.userCountries.user.countries.list.map((e) => e.name).toString() ===
-        ELEMENT_DATA.map((e) => e.name).toString()
+      this.userCountries.user.countries.list
+        .map((e) => e.name + e.date)
+        .toString() === ELEMENT_DATA.map((e) => e.name + e.date).toString()
     ) {
       return true;
     } else {
       return false;
     }
+  }
+
+  refreshElementData() {
+    this.visitedCountriesSource = new MatTableDataSource<PeriodicElement>(
+      ELEMENT_DATA
+    );
+
+    this.visitedCountriesSource.paginator = this.paginator;
+    this.visitedCountriesSource.sort = this.sort;
+  }
+
+  ngOnDestroy() {
+    ELEMENT_DATA.splice(0, ELEMENT_DATA.length);
+    this.queryUserCountries.unsubscribe();
   }
 }

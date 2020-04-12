@@ -65,7 +65,19 @@
       "maxLength": 400
     },
     "countries": {
-      "type": "json"
+      "type": "json",
+      "default": {
+        "map": [
+          [
+            "Country"
+          ]
+        ],
+        "list": []
+      }
+    },
+    "countriesCount": {
+      "type": "integer",
+      "defualt": 0
     }
   }
 }

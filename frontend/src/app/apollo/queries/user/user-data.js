@@ -19,6 +19,7 @@ const USER_DATA = gql `
       size
     }
     countries
+    countriesCount
     }
   }
 `;

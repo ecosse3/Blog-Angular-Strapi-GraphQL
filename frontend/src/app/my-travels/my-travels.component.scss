@@ -6,3 +6,24 @@
 table {
   width: 100%;
 }
+
+::ng-deep tr.mat-row {
+  height: 68px !important;
+}
+
+::ng-deep .mat-form-field-underline,
+::ng-deep .mat-form-field-subscript-wrapper {
+  display: none;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 1em !important;
+}
+
+.mat-form-field-picked-date {
+  padding-top: 1em;
+}
+
+::ng-deep .mat-form-field-infix {
+  width: 85px !important;
+}
