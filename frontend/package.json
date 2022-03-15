@@ -41,7 +41,7 @@
     "graphql-tag": "^2.10.0",
     "hammerjs": "~2.0.8",
     "jquery": "^3.5.0",
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.21",
     "minimist": "^1.2.5",
     "ng2-google-charts": "^6.0.0",
     "ngx-file-drop": "^9.0.0",
